@@ -1,0 +1,127 @@
+
+insert into roles (role_name) values ('ADMIN');
+insert into roles (role_name) values ('USER');
+
+userid 1 and 2 is created and both are user 
+
+
+insert into accounts  (amount,is_default,title,user_id) values 
+					  (50000,1,'CASH',1);
+					
+
+insert into accounts  (amount,is_default,title,user_id) values 
+					  (2000,0,'ICICI Credit Card',1);
+					  
+					  
+insert into accounts  (amount,is_default,title,user_id) values 
+					  (15000,0,'CASH',2);
+					  
+
+insert into vendors (vendor_name) values ('JB');
+insert into vendors (vendor_name) values ('Dmart');
+insert into vendors (vendor_name) values ('Amul');
+insert into vendors (vendor_name) values ('HP Petrol');
+insert into vendors (vendor_name) values ('Reliance Petrol');
+ 
+insert into status (status_name) values ('Completed');
+insert into status (status_name) values ('Pending');
+insert into status (status_name) values ('Hold');
+insert into status (status_name) values ('Partial');
+
+
+
+insert into categories (category_name) values ('Food');
+insert into categories (category_name) values ('Grocery');
+insert into categories (category_name) values ('HouseHold');
+insert into categories (category_name) values ('Fuel');
+
+
+insert into subcategories (category_id,subcategory_name) values (1,'Restaurant');
+insert into subcategories (category_id,subcategory_name) values (2,'CleaningSupplies');
+insert into subcategories (category_id,subcategory_name) values (2,'VegDairyETC');
+insert into subcategories (category_id,subcategory_name) values (3,'KitchenItem');
+insert into subcategories (category_id,subcategory_name) values (4,'Petrol');
+insert into subcategories (category_id,subcategory_name) values (5,'Diesel');
+insert into subcategories (category_id,subcategory_name) values (5,'OilChange');
+insert into subcategories (category_id,subcategory_name) values (5,'CNG');
+
+
+
+insert into expenses 
+	(account_id,amount,category_id,date,description,status_id,subcategory_id,title,user_id,vendor_id)
+	values 
+	(1,2000,4,'2024-03-05','Car Petrol',1,5,'Sainik Seva Petrol',4,4);
+
+
+insert into expenses 
+	(account_id,amount,category_id,date,description,status_id,subcategory_id,title,user_id,vendor_id)
+	values 
+	(1,12000,2,'2024-02-25','Dmart Ka Kharcha',1,2,'Monhtly consumable',3,2);
+
+insert into expenses 
+	(account_id,amount,category_id,date,description,status_id,subcategory_id,title,user_id,vendor_id)
+	values 
+	(1,15000,2,'2024-02-20','Party ka kharcha',1,2,'Birthday party',4,2);
+
+
+
+
+
+
+select * from expenses; 
+
+select * from accounts; 
+
+select * from users; 
+
+
+select * from expenses; 
+select * from users; 
+
+
+select * from expenses , users where expenses.user_id = users.user_id ; 
+
+select e.amount,e.description,u.first_name from expenses e, users u where e.user_id = u.user_id ; 
+
+
+select e.amount,e.description,e.date,u.first_name from expenses e, users u where e.user_id = u.user_id ; 
+
+status table -> 
+
+select e.amount,e.description,e.date, u.first_name,s.status_name 
+from expenses e, users u , status s 
+where e.user_id = u.user_id and s.status_id = e.status_id; 
+
+
+account table -> 
+
+select e.amount,e.description,e.date, u.first_name,s.status_name,a.title 
+from expenses e, users u , status s,accounts a 
+where e.user_id = u.user_id and s.status_id = e.status_id and a.account_id = e.account_id; 
+
+vendor table -> 
+
+select e.amount,e.description,e.date, u.first_name,s.status_name,a.title , v.vendor_name 
+from expenses e, users u , status s,accounts a,vendors v  
+where e.user_id = u.user_id and s.status_id = e.status_id and a.account_id = e.account_id and v.vendor_id = e.vendor_id; 
+
+cagegory and subcategory -> 
+
+
+select  e.title as expenseTitle ,e.expense_id as expenseId,e.amount,e.description,e.date, u.first_name as firstName,s.status_name as statusName ,a.title , v.vendor_name as vendorName ,c.category_name as categoryName,sc.subcategory_name as subCategoryName 
+from expenses e, users u , status s,accounts a,vendors v,categories c,subcategories sc   
+where e.user_id = u.user_id and s.status_id = e.status_id and a.account_id = e.account_id and v.vendor_id = e.vendor_id
+	and c.category_id = e.category_id and sc.subcategory_id = e.subcategory_id; 
+
+
+
+DTO -> interface -> getters 
+
+
+
+
+
+
+					  	  
+					  	  
+					  	  
