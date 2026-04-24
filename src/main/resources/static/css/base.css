@@ -1,0 +1,146 @@
+/* ============================================================
+   MONEYTRAIL — BASE STYLES
+   base.css
+   ============================================================ */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--text-primary);
+  background: var(--bg-app);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background var(--dur-slow) var(--ease-base), color var(--dur-slow) var(--ease-base);
+}
+
+/* ── Typography ────────────────────────────────────────── */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.25;
+  color: var(--text-primary);
+}
+
+p { color: var(--text-secondary); }
+
+a {
+  color: var(--brand-600);
+  text-decoration: none;
+  transition: color var(--dur-fast) var(--ease-base);
+}
+a:hover { color: var(--brand-500); }
+
+[data-theme="dark"] a { color: var(--brand-400); }
+[data-theme="dark"] a:hover { color: var(--brand-300); }
+
+code, pre, kbd {
+  font-family: var(--font-mono);
+}
+
+/* ── Utility Classes ───────────────────────────────────── */
+.text-xs   { font-size: var(--text-xs) !important; }
+.text-sm   { font-size: var(--text-sm) !important; }
+.text-base { font-size: var(--text-base) !important; }
+.text-lg   { font-size: var(--text-lg) !important; }
+.text-xl   { font-size: var(--text-xl) !important; }
+.text-2xl  { font-size: var(--text-2xl) !important; }
+.text-3xl  { font-size: var(--text-3xl) !important; }
+.text-4xl  { font-size: var(--text-4xl) !important; }
+
+.fw-400 { font-weight: 400 !important; }
+.fw-500 { font-weight: 500 !important; }
+.fw-600 { font-weight: 600 !important; }
+.fw-700 { font-weight: 700 !important; }
+
+.text-primary-color   { color: var(--text-primary) !important; }
+.text-secondary-color { color: var(--text-secondary) !important; }
+.text-muted-color     { color: var(--text-muted) !important; }
+.text-brand           { color: var(--brand-500) !important; }
+.text-success         { color: var(--success-500) !important; }
+.text-danger          { color: var(--danger-500) !important; }
+.text-warning         { color: var(--warning-500) !important; }
+.text-accent          { color: var(--accent-500) !important; }
+
+.text-income  { color: var(--income-color) !important; }
+.text-expense { color: var(--expense-color) !important; }
+.text-balance { color: var(--balance-color) !important; }
+
+.bg-card   { background: var(--bg-card) !important; }
+.bg-app    { background: var(--bg-app) !important; }
+.bg-hover  { background: var(--bg-hover) !important; }
+
+.border-color { border-color: var(--border-color) !important; }
+
+.rounded-xs   { border-radius: var(--r-xs) !important; }
+.rounded-sm   { border-radius: var(--r-sm) !important; }
+.rounded-md   { border-radius: var(--r-md) !important; }
+.rounded-lg   { border-radius: var(--r-lg) !important; }
+.rounded-xl   { border-radius: var(--r-xl) !important; }
+.rounded-2xl  { border-radius: var(--r-2xl) !important; }
+.rounded-full { border-radius: var(--r-full) !important; }
+
+.shadow-xs  { box-shadow: var(--shadow-xs) !important; }
+.shadow-sm  { box-shadow: var(--shadow-sm) !important; }
+.shadow-md  { box-shadow: var(--shadow-md) !important; }
+.shadow-lg  { box-shadow: var(--shadow-lg) !important; }
+.shadow-xl  { box-shadow: var(--shadow-xl) !important; }
+
+.flex-1   { flex: 1 !important; }
+.flex-col  { flex-direction: column !important; }
+.items-center { align-items: center !important; }
+.justify-between { justify-content: space-between !important; }
+
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.d-sm-none { display: none !important; }
+@media (min-width: 576px) { .d-sm-none { display: inline-flex !important; } }
+
+/* ── Scrollbar ─────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: var(--gray-300);
+  border-radius: var(--r-full);
+}
+[data-theme="dark"] ::-webkit-scrollbar-thumb { background: var(--gray-700); }
+::-webkit-scrollbar-thumb:hover { background: var(--gray-400); }
+
+/* ── Selection ─────────────────────────────────────────── */
+::selection {
+  background: var(--brand-200);
+  color: var(--brand-900);
+}
+[data-theme="dark"] ::selection {
+  background: rgba(18,179,131,0.3);
+  color: var(--brand-100);
+}
+
+/* ── Focus ring ────────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--brand-500);
+  outline-offset: 2px;
+}
+
+/* ── Transitions for theme switch ──────────────────────── */
+*, *::before, *::after {
+  transition-property: background-color, border-color, color, box-shadow;
+  transition-duration: var(--dur-base);
+  transition-timing-function: var(--ease-base);
+}
+/* But don't transition width/height/transform by default */
+.no-transition, .no-transition * { transition: none !important; }
